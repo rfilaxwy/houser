@@ -1,6 +1,7 @@
 const express = require('express'),
     bodyparser = require('body-parser'),
     massive = require('massive'),
+    controller = require(__dirname+'/controller.js'),
     app = express();
 
 require('dotenv').config();
@@ -18,3 +19,5 @@ massive(process.env.CONNECTION_STRING).then(db=>{
 })
 
 //////////////////////ENDPOINTS//////////////////////
+
+app.get('/api/houses', controller.read);
