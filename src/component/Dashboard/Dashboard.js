@@ -11,7 +11,7 @@ class Dashboard extends Component{
         }
     }
     componentDidMount(){
-        axios.get
+        // axios.get
     }
     render(){
         const { houseList } = this.state;
