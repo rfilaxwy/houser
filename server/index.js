@@ -2,15 +2,19 @@ const express = require('express'),
     bodyparser = require('body-parser'),
     massive = require('massive'),
     controller = require(__dirname+'/controller.js'),
-    app = express();
+    app = express(),
+    cors= require('cors')
 
 require('dotenv').config();
+app.use(cors());
+app.use(bodyparser.json());
 
-app.use(bodyparser.json())
 
-const port  = process.env.SERVER_PORT || 3000;
+let db
+const port  = process.env.SERVER_PORT;
 massive(process.env.CONNECTION_STRING).then(db=>{
     app.set('db',db);
+    //Outside for enterprise. 
     app.listen(port, ()=>{
         console.log(`Listening HARD on port ${port}`)
     });
@@ -21,3 +25,4 @@ massive(process.env.CONNECTION_STRING).then(db=>{
 //////////////////////ENDPOINTS//////////////////////
 
 app.get('/api/houses', controller.read);
+app.delete('/api/houses/:id',controller.delete);

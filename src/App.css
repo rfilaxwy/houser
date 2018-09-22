@@ -27,6 +27,9 @@
   to { transform: rotate(360deg); }
 }
 
+.houseCard{
+  background-color:gray;
+}
 /* Style guide colors
 3b5249
 519872
