@@ -26,3 +26,4 @@ massive(process.env.CONNECTION_STRING).then(db=>{
 
 app.get('/api/houses', controller.read);
 app.delete('/api/houses/:id',controller.delete);
+app.put('/api/houses',controller.post);

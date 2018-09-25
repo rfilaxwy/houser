@@ -12,5 +12,14 @@ module.exports ={
                 res.status(200).send(result)
             })
         })
+    },
+    post:(req,res)=>{
+        const db =req.app.get('db');
+        const {name,address,city,state,zipcode}=req.body;
+        db.save_house(name,address,city,state,zipcode).then(result=>{
+            db.get_houses().then(result=>{
+                res.status(200).send(result);
+            })
+        })
     }
 }
