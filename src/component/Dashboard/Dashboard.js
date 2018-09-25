@@ -3,6 +3,7 @@ import House from '../House/House';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import '../../App.css';
+
 class Dashboard extends Component{
     constructor(){
         super()
@@ -58,8 +59,8 @@ class Dashboard extends Component{
             <div>
                 <div>Dashboard</div>
                 
-                <Link to="/Step1">
-                    <button>Add New Property</button>
+                <Link to="/Wizard/Step1">
+                    <button>Navigate to Step 1</button>
                 </Link>
                 {houseListDisplay}
             </div>

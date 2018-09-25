@@ -19,8 +19,10 @@ class Step2 extends Component{
     render(){
         return(
             <div>
-                <div>Wizard</div>
-                <input onChange={(e)=>this.handleImage(e.target.value)} placeholder='name'></input>               
+                <div>Step 2</div>
+                <input onChange={(e)=>this.handleImage(e.target.value)} placeholder='name'></input>
+                <Link to="/Wizard/Step1" ><button>Back</button></Link>
+                <Link to='/Wizard/Step3'><button>Next</button></Link>               
             </div>
         )
     }

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import axios from 'axios';
+
 
 class Step1 extends Component{
     constructor(){
@@ -35,21 +35,7 @@ class Step1 extends Component{
         this.setState({name:'',city:'',address:'',state:'',zipcode:''})
     }
 
-    saveHouse(){
-        const house ={
-            name:this.state.name,
-            address:this.state.address,
-            city:this.state.city,
-            state:this.state.state,
-            zipcode:this.state.zipcode
-        }
-        axios.put('/api/houses', house).then(()=>{
-            // this.props.redirect('/step2')
-
-            // Need to get redirect working
-            
-        })
-    }
+   
 
 
     render(){
@@ -61,9 +47,19 @@ class Step1 extends Component{
                 <input onChange={(e)=>this.handleCity(e.target.value)} placeholder='city'></input>
                 <input onChange={(e)=>this.handleState(e.target.value)} placeholder='state'></input>
                 <input onChange={(e)=>this.handleZip(e.target.value)} placeholder='zipcode'></input>
-               <Link to="/" ><button onClick={()=>{this.saveHouse()}}>Complete</button></Link>
+               <Link to="/Wizard/Step2" ><button>Next</button></Link>
             </div>
         )
     }
 }
-export default Step1;
+function mapStateToProps(state){
+    const{name,address,city,state,zipcode}=state;
+    return{
+        name,
+        address,
+        city,
+        state,
+        zipcode
+    }
+}
+export default connect(mapStateToProps,{updateName,updateAddress,updateCity,updateState,updateZipcode})(Step1);
