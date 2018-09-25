@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-
+import {addImage} from '../../ducks/reducer';
 
 class Step2 extends Component{
     constructor(){
@@ -10,10 +10,7 @@ class Step2 extends Component{
             image:''     
         }
     }
-    handleImage(val){
-        console.log(val)
-        this.setState({image:val})
-    }
+  
   
    
     render(){
@@ -27,4 +24,10 @@ class Step2 extends Component{
         )
     }
 }
-export default Step2;
+function mapStateToProps(state){
+    const {image}=state;
+    return {
+        image
+    }
+}
+export default connect(mapStateToProps,{addImage})(Step2);

@@ -2,22 +2,17 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import axios from 'axios';
+import {addDesiredRent, addMonthlyMortgage} from '../../ducks/reducer';
 
 class Step3 extends Component{
     constructor(){
         super()
         this.state={
             monthlyMortgage:'',
-            desireAmount:''     
+            desiredRent:''     
         }
     }
-    handleMortgage(val){
-        
-        this.setState({monthlyMortgage:val})
-    }
-    handleDesired(val){
-        this.setState({desiredAmount:val})
-    }
+   
     
     saveHouse(){
         const house ={
@@ -36,6 +31,7 @@ class Step3 extends Component{
     }
    
     render(){
+        
         return(
             <div>
                 <div>Wizard</div>
@@ -49,4 +45,11 @@ class Step3 extends Component{
         )
     }
 }
-export default Step3;
+function mapStateToProps(state){
+    const {monthlyMortgage, desiredRent} = state;
+    return{
+        monthlyMortgage,
+        desiredRent
+    }
+}
+export default connect(mapStateToProps,{addMonthlyMortgage,addDesiredRent})(Step3);
