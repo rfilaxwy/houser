@@ -12,7 +12,10 @@ class Step3 extends Component{
             desiredRent:''     
         }
     }
-   
+    componentDidMount(){
+        const {monthlyMortgage,desiredRent}=this.props;
+        this.setState({monthlyMortgage:monthlyMortgage,desiredRent:desiredRent})
+    }
     handleDesiredRent(val){
         this.setState({desiredRent:val})
     }
@@ -30,17 +33,16 @@ class Step3 extends Component{
    
     render(){
         const {addMortgageParams} =this.props;
+        const{monthlyMortgage,desiredRent}=this.state;
         return(
             <div>
                 <div>Wizard</div>
-                <input onChange={(e)=>this.handleMortgage(e.target.value)} placeholder='name'></input>               
-                <input onChange={(e)=>this.handleDesired(e.target.value)} placeholder='name'></input>
-                <Link to="/Wizard/Step1" ><button>Back</button></Link>
+                <input value={this.state.monthlyMortgage} onChange={(e)=>this.handleMonthlyMortgage(e.target.value)} placeholder='Monthly Mortgage'></input>               
+                <input value={this.state.desiredRent} onChange={(e)=>this.handleDesiredRent(e.target.value)} placeholder='Desired Rent'></input>
+                <Link to="/Wizard/Step2" ><button onClick={()=>{addMortgageParams(monthlyMortgage,desiredRent)}}>Back</button></Link>
                 <Link to='/'><button 
-                    onClick={()=>{addMortgageParams(this.state)}}
-                    >Complete</button></Link> 
-                
-                             
+                    onClick={()=>{addMortgageParams(monthlyMortgage,desiredRent)}}
+                    >Complete</button></Link>              
             </div>
         )
     }

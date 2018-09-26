@@ -14,7 +14,10 @@ class Step1 extends Component{
             zipcode:''
         }
     }
-
+    componentDidMount(){  
+        const {name,address,city,states,zipcode}=this.props;
+        this.setState({name:name,address:address,city:city,states:states,zipcode:zipcode})
+    }
     addName(val){
         this.setState({name:val})
     }
@@ -25,7 +28,7 @@ class Step1 extends Component{
         this.setState({city:val})
     }
     addStates(val){
-        this.setState({state:val})
+        this.setState({states:val})
     }
     addZipcode(val){
         this.setState({zipcode:val})
@@ -40,15 +43,16 @@ class Step1 extends Component{
 
     render(){
         const {addProperty} =this.props;
+        const {name,address,city,states,zipcode} =this.state;
         return(
             <div>
                 <div>Step 1</div>
-                <input onChange={(e)=>this.addName(e.target.value)} placeholder='name'></input>
-                <input onChange={(e)=>this.addAddress(e.target.value)} placeholder='address'></input>
-                <input onChange={(e)=>this.addCity(e.target.value)} placeholder='city'></input>
-                <input onChange={(e)=>this.addStates(e.target.value)} placeholder='state'></input>
-                <input onChange={(e)=>this.addZipcode(e.target.value)} placeholder='zipcode'></input>
-               <Link to="/Wizard/Step2" ><button onClick={()=>addProperty(this.state)}>Next</button></Link>
+                <input value={name} onChange={(e)=>this.addName(e.target.value)} placeholder='name'></input>
+                <input value={address} onChange={(e)=>this.addAddress(e.target.value)} placeholder='address'></input>
+                <input value={city} onChange={(e)=>this.addCity(e.target.value)} placeholder='city'></input>
+                <input value={states} onChange={(e)=>this.addStates(e.target.value)} placeholder='state'></input>
+                <input value={zipcode} onChange={(e)=>this.addZipcode(e.target.value)} placeholder='zipcode'></input>
+               <Link to="/Wizard/Step2" ><button onClick={()=>{addProperty(name,address,city,states,zipcode)}}>Next step</button></Link>
             </div>
         )
     }

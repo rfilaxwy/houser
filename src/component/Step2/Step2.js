@@ -10,19 +10,24 @@ class Step2 extends Component{
             image:''     
         }
     }
-    handleImage(val){
+    componentDidMount(){
+        const {image} = this.props;
+        this.setState({image:image})
+    }
+
+    addHandleImage(val){
         this.setState({image:val});
     }
-  
    
     render(){
         const {addImage}=this.props;
+        const{image}=this.state;
         return(
             <div>
                 <div>Step 2</div>
-                <input onChange={(e)=>this.handleImage(e.target.value)} placeholder='name'></input>
-                <Link to="/Wizard/Step1" ><button>Back</button></Link>
-                <Link to='/Wizard/Step3'><button onClick={()=>{addImage(this.state)}}>Next</button></Link>               
+                <input value={image} onChange={(e)=>this.addHandleImage(e.target.value)} placeholder='Image'></input>
+                <Link to='/Wizard/Step1'><button onClick={()=>{addImage(this.state.image)}}>Back</button></Link>
+                <Link to='/Wizard/Step3'><button onClick={()=>{addImage(this.state.image)}}>Next step</button></Link>               
             </div>
         )
     }

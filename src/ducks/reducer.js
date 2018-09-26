@@ -2,7 +2,7 @@ const initialState = {
     name:'',
     address:'',
     city:'',
-    state:'',
+    states:'',
     zipcode:'',
     image:'',
     monthly_mortgage:'',
@@ -17,38 +17,34 @@ const ADD_IMAGE = "ADD_IMAGE";
 
 const ADD_MORTGAGE_PARAMS = 'ADD_MORTGAGE_PARAMS';
 
-
-
-
-
-export default function reducer ( state = initialState, action ) {
+function reducer ( state = initialState, action ) {
     let { payload } = action ;
     switch( action.type ) {
         case ADD_PROPERTY:
-            return Object.assign({},state,{addProperty:payload});
+            return Object.assign({},state,{name:payload.name,address:payload.address,city:payload.city,states:payload.states,zipcode:payload.zipcode});
         case ADD_MORTGAGE_PARAMS:
-            return Object.assign({},state,{addMortgageParams:payload});
+            return Object.assign({},state,{monthlyMortgage:payload.monthlyMortgage,desiredRent:payload.desiredRent});
         case ADD_IMAGE:
-            return Object.assign({},state,{addImage:payload});
+            return Object.assign({},state,{image:payload.image});
        
         default: return state;
     }
 }
 
 //STEP 1
-export function addProperty(name,address,city,state,zipcode){
+export function addProperty(name,address,city,states,zipcode){
+    
     return {
-        type: addProperty,
-        payload:{name,address,city,state,zipcode}
+        type: ADD_PROPERTY,
+        payload:{name,address,city,states,zipcode}
     }
 }
-
 
 //Step 2
 export function addImage(image){
     return{
         type:ADD_IMAGE,
-        payload:image
+        payload:{image}
     }
 }
 
@@ -60,3 +56,5 @@ export function addMortgageParams(monthlyMortgage,desiredRent){
         payload:{monthlyMortgage,desiredRent}
     }
 }
+
+export default reducer;
