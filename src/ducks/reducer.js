@@ -5,9 +5,13 @@ const initialState = {
     states:'',
     zipcode:'',
     image:'',
-    monthly_mortgage:'',
-    desired_rent:''
+    monthlyMortgage:'',
+    desiredRent:''
 }
+
+//***used for all
+const CANCEL_INPUTS = "CANCEL_INPUTS";
+
 //Step 1
 const ADD_PROPERTY = "ADD_PROPERTY";
 
@@ -26,7 +30,8 @@ function reducer ( state = initialState, action ) {
             return Object.assign({},state,{monthlyMortgage:payload.monthlyMortgage,desiredRent:payload.desiredRent});
         case ADD_IMAGE:
             return Object.assign({},state,{image:payload.image});
-       
+        case CANCEL_INPUTS:
+            return Object.assign({},state,{})
         default: return state;
     }
 }
@@ -54,6 +59,13 @@ export function addMortgageParams(monthlyMortgage,desiredRent){
     return{
         type: ADD_MORTGAGE_PARAMS,
         payload:{monthlyMortgage,desiredRent}
+    }
+}
+
+export function canceler(){
+    return{
+        type:CANCEL_INPUTS,
+        payload: initialState
     }
 }
 
