@@ -1,2 +1,2 @@
-INSERT INTO Houses(name,address,city,state,zipcode,image,monthly_mortgage,desired_rent)
+INSERT INTO Houses(name,address,city,states,zipcode,image,monthlyMortgage,desiredRent)
 Values($1,$2,$3,$4,$5,$6,$7,$8);

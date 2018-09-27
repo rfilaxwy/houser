@@ -26,8 +26,8 @@ class Step2 extends Component{
             <div>
                 <div>Step 2</div>
                 <input value={image} onChange={(e)=>this.addHandleImage(e.target.value)} placeholder='Image'></input>
-                <Link to='/Wizard/Step1'><button onClick={()=>{addImage(this.state.image)}}>Back</button></Link>
-                <Link to='/Wizard/Step3'><button onClick={()=>{addImage(this.state.image)}}>Next step</button></Link>               
+                <Link to='/Wizard/Step1'><button onClick={()=>{addImage(image)}}>Back</button></Link>
+                <Link to='/Wizard/Step3'><button onClick={()=>{addImage(image)}}>Next step</button></Link>               
             </div>
         )
     }

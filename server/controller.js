@@ -15,8 +15,8 @@ module.exports ={
     },
     post:(req,res)=>{
         const db =req.app.get('db');
-        const {name,address,city,states,zipcode,image,monthly_mortgage,desired_rent}=req.body;
-        db.save_house(name,address,city,states,zipcode,image,monthly_mortgage,desired_rent).then(result=>{
+        const {name,address,city,states,zipcode,image,monthlymortgage,desiredrent}=req.body;
+        db.save_house(name,address,city,states,zipcode,image,monthlymortgage,desiredrent).then(result=>{
             db.get_houses().then(result=>{
                 res.status(200).send(result);
             })

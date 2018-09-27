@@ -19,15 +19,18 @@ const ADD_PROPERTY = "ADD_PROPERTY";
 const ADD_IMAGE = "ADD_IMAGE";
 //Step 3
 
-const ADD_MORTGAGE_PARAMS = 'ADD_MORTGAGE_PARAMS';
+const ADD_MONTHLY_MORTGAGE = 'ADD_MONTHLY_MORTGAGE';
+const ADD_DESIRED_RENT = 'ADD_DESIRED_RENT';
 
 function reducer ( state = initialState, action ) {
     let { payload } = action ;
     switch( action.type ) {
         case ADD_PROPERTY:
             return Object.assign({},state,{name:payload.name,address:payload.address,city:payload.city,states:payload.states,zipcode:payload.zipcode});
-        case ADD_MORTGAGE_PARAMS:
-            return Object.assign({},state,{monthlyMortgage:payload.monthlyMortgage,desiredRent:payload.desiredRent});
+        case ADD_MONTHLY_MORTGAGE:
+            return Object.assign({},state,{monthlyMortgage:payload.monthlyMortgage});
+        case ADD_DESIRED_RENT:
+            return Object.assign({}, state,{desiredRent:payload.desiredRent})
         case ADD_IMAGE:
             return Object.assign({},state,{image:payload.image});
         case CANCEL_INPUTS:
@@ -38,7 +41,7 @@ function reducer ( state = initialState, action ) {
 
 //STEP 1
 export function addProperty(name,address,city,states,zipcode){
-    
+    debugger
     return {
         type: ADD_PROPERTY,
         payload:{name,address,city,states,zipcode}
@@ -49,19 +52,24 @@ export function addProperty(name,address,city,states,zipcode){
 export function addImage(image){
     return{
         type:ADD_IMAGE,
-        payload:{image}
+        payload:image
     }
 }
 
 //Step 3
 
-export function addMortgageParams(monthlyMortgage,desiredRent){
+export function addMonthlyMortgage(monthlyMortgage){
     return{
-        type: ADD_MORTGAGE_PARAMS,
-        payload:{monthlyMortgage,desiredRent}
+        type: ADD_MONTHLY_MORTGAGE,
+        payload:monthlyMortgage
     }
 }
-
+export function addDesiredRent(desiredRent){
+    return{
+        type: ADD_DESIRED_RENT,
+        payload:desiredRent
+    }
+}
 export function canceler(){
     return{
         type:CANCEL_INPUTS,

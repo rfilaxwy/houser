@@ -31,6 +31,7 @@ class Step1 extends Component{
         this.setState({states:val})
     }
     addZipcode(val){
+        console.log(val)
         this.setState({zipcode:val})
     }
 
@@ -59,6 +60,7 @@ class Step1 extends Component{
 }
 function mapStateToProps(state){
     const{name,address,city,states,zipcode}=state;
+    debugger
     return{
         name,
         address,

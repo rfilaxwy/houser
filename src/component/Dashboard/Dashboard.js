@@ -14,6 +14,7 @@ class Dashboard extends Component{
     }
     getHouses(){
         axios.get('/api/houses').then((response)=>{
+            console.log(response.data)
             const house = response.data;
             this.setState({houseList:house})
         })
@@ -45,8 +46,11 @@ class Dashboard extends Component{
                name={house.name}
                address={house.address}
                city={house.city}
-               state={house.state}
+               states={house.states}
                zipcode={house.zipcode}
+               image={house.image}
+               monthlymortgage={house.monthlymortgage}
+               desiredrent={house.desiredrent}
                delete={this.deleteHouse}
                houseList={this.state.houseList}
                getHouses={this.getHouses}
